@@ -4,6 +4,9 @@ rabbitmq:
    ## @param rabbitmq.app App name for rabbitmq
    ##
    app: rabbitmq
+   ## @param rabbitmq.deploy for rabbitmq
+   #
+   deploy: true
    ## @param rabbitmq.name Name for rabbitmq
    ##
    name: rabbitmq
@@ -29,7 +32,7 @@ postgres:
    app: postgres
    ## @param postres.enabled
    ##
-   enabled: 1
+   deploy: true
    ## @param postgres.name PostgreSQL Name
    ##
    name: postgres

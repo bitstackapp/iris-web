@@ -1,4 +1,4 @@
-{{if eq .Values.postgres.enabled 1}}
+{{if .Values.postgres.deploy}}
 ---
 # Here I have used a hostpath
 # Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not supported.
