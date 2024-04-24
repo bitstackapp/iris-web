@@ -1,4 +1,5 @@
----    
+{{if eq .Values.postgres.enabled 1}}
+---
 # Here I have used a hostpath
 # Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not supported.
 # If you need to go with Dynamic volumes you may choose AWS EBS or EFS
@@ -101,4 +102,6 @@ spec:
    - port: {{ .Values.postgres.service.port }}
   selector:
    app: {{ .Values.postgres.app }}
----  
+---
+{{else}}
+{{end}}

@@ -27,6 +27,9 @@ postgres:
    ## @param postgres.app PostgreSQL App
    ##
    app: postgres
+   ## @param postres.enabled
+   ##
+   enabled: 1
    ## @param postgres.name PostgreSQL Name
    ##
    name: postgres
@@ -53,7 +56,7 @@ postgres:
    POSTGRES_PASSWORD: postgres
    POSTGRES_ADMIN_USER: raptor
    POSTGRES_ADMIN_PASSWORD: postgres
-   POSTGRES_DB: iris_db
+   POSTGRES_DB: iris
    POSTGRES_PORT: 5432
 
 
@@ -96,6 +99,7 @@ irisapp:
    POSTGRES_ADMIN_PASSWORD: postgres
    POSTGRES_PORT: 5432
    POSTGRES_SERVER: postgres.<name_space>.svc.cluster.local
+   POSTGRES_DB: iris
    DOCKERIZED: 1
    IRIS_SECRET_KEY: AVerySuperSecretKey-SoNotThisOne
    IRIS_SECURITY_PASSWORD_SALT: ARandomSalt-NotThisOneEither
@@ -105,6 +109,7 @@ irisapp:
    DB_RETRY_COUNT: 5
    DB_RETRY_DELAY: 5
    INTERFACE_HTTPS_PORT: 443
+
 
 ## @section Iris Backend Configuration
 ##
