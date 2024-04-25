@@ -56,7 +56,7 @@ spec:
         - name: {{ .Values.irisworker.name }}
           image: "{{ .Values.irisworker.image}}:{{ .Values.irisworker.tag }}"
           imagePullPolicy: "{{ .Values.irisworker.imagePullPolicy }}"
-          command: ['./wait-for-iriswebapp.sh', "{{ .Values.irisapp.name }}:{{ .Values.irisapp.service.port }}", './iris-entrypoint.sh', 'iris-worker']
+          command: ['./wait-for-iriswebapp.sh', "{{ .Values.irisworker.name }}:{{ .Values.irisworker.service.port }}", './iris-entrypoint.sh', 'iris-worker']
 
           env:
                 
@@ -66,32 +66,72 @@ spec:
           - name: POSTGRES_USER  
             value: {{ .Values.irisworker.POSTGRES_USER | quote }}
 
-          - name:  POSTGRES_PASSWORD
-            value: {{ .Values.irisworker.POSTGRES_PASSWORD | quote }}
-
           - name: POSTGRES_DB
             value: {{ .Values.irisworker.POSTGRES_DB | quote }}
 
           - name:  POSTGRES_ADMIN_USER 
             value: {{ .Values.irisworker.POSTGRES_ADMIN_USER | quote }}
 
-          - name:  POSTGRES_ADMIN_PASSWORD 
-            value: {{ .Values.irisworker.POSTGRES_ADMIN_PASSWORD | quote }}    
-
           - name:  POSTGRES_PORT 
             value: {{ .Values.irisworker.POSTGRES_PORT | quote }}   
 
           - name:  POSTGRES_SERVER 
-            value: {{ .Values.irisworker.POSTGRES_SERVER | quote }}  
-
-          - name:  IRIS_SECRET_KEY 
-            value: {{ .Values.irisworker.IRIS_SECRET_KEY | quote }}
-
-          - name:  IRIS_SECURITY_PASSWORD_SALT 
-            value: {{ .Values.irisworker.IRIS_SECURITY_PASSWORD_SALT | quote }}
+            value: {{ .Values.irisworker.POSTGRES_SERVER | quote }}
 
           - name:  CELERY_BROKER
             value: {{ .Values.irisworker.CELERY_BROKER | quote }}
+
+          {{if .Values.irisworker.secrets.enabled}}
+
+          - name: IRIS_ADM_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.irisworker.secrets.iris_admin_password.name}}
+                key: {{.Values.irisworker.secrets.iris_admin_password.key}}
+
+          - name: IRIS_SECURITY_PASSWORD_SALT
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.irisworker.secrets.password_salt.name}}
+                key: {{.Values.irisworker.secrets.password_salt.key}}
+
+          - name: IRIS_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.irisworker.secrets.secret_key.name}}
+                key: {{.Values.irisworker.secrets.secret_key.key}}
+
+          - name: POSTGRES_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.irisworker.secrets.postgres_admin_password.name}}
+                key: {{.Values.irisworker.secrets.postgres_admin_password.key}}
+
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.irisworker.secrets.postgres_password.name}}
+                key: {{.Values.irisworker.secrets.postgres_password.key}}
+
+                {{else}}
+
+          - name: IRIS_ADM_PASSWORD
+            value: {{ .Values.irisworker.IRIS_ADM_PASSWORD | quote }}
+
+          - name: IRIS_SECURITY_PASSWORD_SALT
+            value: {{ .Values.irisworker.IRIS_SECURITY_PASSWORD_SALT | quote }}
+
+          - name: IRIS_SECRET_KEY
+            value: {{ .Values.irisworker.IRIS_SECRET_KEY | quote }}
+
+          - name: POSTGRES_ADMIN_PASSWORD # Setting Database admin password
+            value: {{ .Values.irisworker.POSTGRES_ADMIN_PASSWORD | quote }}
+
+          - name: POSTGRES_PASSWORD # Setting Database password
+            value: {{ .Values.irisworker.POSTGRES_PASSWORD | quote }}
+
+                
+          {{end}}
   
 
           volumeMounts:

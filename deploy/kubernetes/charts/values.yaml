@@ -156,6 +156,24 @@ irisworker:
    ##
    replicaCount: 1
 
+   secrets:
+     enabled: false
+     postgres_password:
+       name: ''
+       key: ''
+     postgres_admin_password:
+       name: ''
+       key: ''
+     secret_key:
+       name: ''
+       key: ''
+     password_salt:
+       name: ''
+       key: ''
+     iris_admin_password:
+       name: ''
+       key: ''
+
    ## @param  Iris Backend Environments
    ##
    POSTGRES_USER: raptor
