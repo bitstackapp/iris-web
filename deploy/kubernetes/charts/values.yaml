@@ -172,6 +172,9 @@ irisworker:
      password_salt:
        name: ''
        key: ''
+     celery_broker:
+       name: ''
+       key: ''
 
    ## @param  Iris Backend Environments
    ##

@@ -78,9 +78,6 @@ spec:
           - name:  POSTGRES_SERVER 
             value: {{ .Values.irisworker.POSTGRES_SERVER | quote }}
 
-          - name:  CELERY_BROKER
-            value: {{ .Values.irisworker.CELERY_BROKER | quote }}
-
           {{if .Values.irisworker.secrets.enabled}}
 
           - name: IRIS_SECURITY_PASSWORD_SALT
@@ -107,6 +104,12 @@ spec:
                 name: {{.Values.irisworker.secrets.postgres_password.name}}
                 key: {{.Values.irisworker.secrets.postgres_password.key}}
 
+          - name: CELERY_BROKER
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.irisworker.secrets.celery_broker.name}}
+                key: {{.Values.irisworker.secrets.celery_broker.key}}
+
           {{else}}
 
           - name: IRIS_SECURITY_PASSWORD_SALT
@@ -121,9 +124,10 @@ spec:
           - name: POSTGRES_PASSWORD # Setting Database password
             value: {{ .Values.irisworker.POSTGRES_PASSWORD | quote }}
 
+          - name: CELERY_BROKER
+            value: {{ .Values.irisworker.CELERY_BROKER | quote }}
                 
           {{end}}
-  
 
           volumeMounts:
             - mountPath: /home/iris/downloads
