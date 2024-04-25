@@ -88,7 +88,10 @@ spec:
             value: {{ .Values.irisworker.IRIS_SECRET_KEY | quote }}
 
           - name:  IRIS_SECURITY_PASSWORD_SALT 
-            value: {{ .Values.irisworker.IRIS_SECURITY_PASSWORD_SALT | quote }}          
+            value: {{ .Values.irisworker.IRIS_SECURITY_PASSWORD_SALT | quote }}
+
+          - name:  CELERY_BROKER
+            value: {{ .Values.irisworker.CELERY_BROKER | quote }}
   
 
           volumeMounts:

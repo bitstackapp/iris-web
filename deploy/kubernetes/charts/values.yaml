@@ -147,6 +147,7 @@ irisworker:
    DOCKERIZED: 1
    IRIS_SECRET_KEY: AVerySuperSecretKey-SoNotThisOne
    IRIS_SECURITY_PASSWORD_SALT: ARandomSalt-NotThisOneEither
+   CELERY_BROKER: amqp://guest:**@rabbitmq:5672
 
 ## @section Nginx Ingress Configuration
 ##
