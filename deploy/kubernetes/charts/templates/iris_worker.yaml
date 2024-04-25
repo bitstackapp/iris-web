@@ -56,7 +56,7 @@ spec:
         - name: {{ .Values.irisworker.name }}
           image: "{{ .Values.irisworker.image}}:{{ .Values.irisworker.tag }}"
           imagePullPolicy: "{{ .Values.irisworker.imagePullPolicy }}"
-          command: ['./wait-for-iriswebapp.sh', "{{ .Values.irisworker.name }}:{{ .Values.irisapp.service.port }}", './iris-entrypoint.sh', 'iris-worker']
+          command: ['./wait-for-iriswebapp.sh', "{{ .Values.irisapp.name }}:{{ .Values.irisapp.service.port }}", './iris-entrypoint.sh', 'iris-worker']
 
           env:
                 

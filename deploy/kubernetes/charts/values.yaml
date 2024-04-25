@@ -90,6 +90,7 @@ irisapp:
    service:
      port: 8000
 
+   ## Use kubernetes secrets instead of setting env variables
    secrets:
     enabled: false
     postgres_password:
@@ -156,6 +157,7 @@ irisworker:
    ##
    replicaCount: 1
 
+   ## Use kubernetes secrets instead of setting env variables
    secrets:
      enabled: false
      postgres_password:
