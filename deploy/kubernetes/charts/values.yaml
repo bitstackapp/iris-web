@@ -170,9 +170,6 @@ irisworker:
      password_salt:
        name: ''
        key: ''
-     iris_admin_password:
-       name: ''
-       key: ''
 
    ## @param  Iris Backend Environments
    ##

@@ -83,12 +83,6 @@ spec:
 
           {{if .Values.irisworker.secrets.enabled}}
 
-          - name: IRIS_ADM_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{.Values.irisworker.secrets.iris_admin_password.name}}
-                key: {{.Values.irisworker.secrets.iris_admin_password.key}}
-
           - name: IRIS_SECURITY_PASSWORD_SALT
             valueFrom:
               secretKeyRef:
@@ -113,10 +107,7 @@ spec:
                 name: {{.Values.irisworker.secrets.postgres_password.name}}
                 key: {{.Values.irisworker.secrets.postgres_password.key}}
 
-                {{else}}
-
-          - name: IRIS_ADM_PASSWORD
-            value: {{ .Values.irisworker.IRIS_ADM_PASSWORD | quote }}
+          {{else}}
 
           - name: IRIS_SECURITY_PASSWORD_SALT
             value: {{ .Values.irisworker.IRIS_SECURITY_PASSWORD_SALT | quote }}
