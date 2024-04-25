@@ -92,11 +92,21 @@ irisapp:
 
    secrets:
     enabled: false
-    postgres_password_name: ''
-    postgres_admin_password_name: ''
-    secret_key_name: ''
-    password_salt_name: ''
-    iris_admin_password: ''
+    postgres_password:
+      name: ''
+      key: ''
+    postgres_admin_password:
+      name: ''
+      key: ''
+    secret_key:
+      name: ''
+      key: ''
+    password_salt:
+      name: ''
+      key: ''
+    iris_admin_password:
+      name: ''
+      key: ''
 
    ## @param irisapp.type Iris Frontend Service type
    ##

@@ -98,27 +98,32 @@ spec:
           - name: IRIS_ADM_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: {{.Values.irisapp.secrets.iris_admin_password}}
+                name: {{.Values.irisapp.secrets.iris_admin_password.name}}
+                key: {{.Values.irisapp.secrets.iris_admin_password.key}}
 
           - name: IRIS_SECURITY_PASSWORD_SALT
             valueFrom:
               secretKeyRef:
-                key: {{.Values.irisapp.secrets.password_salt_name}}
+                name: {{.Values.irisapp.secrets.password_salt.name}}
+                key: {{.Values.irisapp.secrets.password_salt.key}}
 
           - name: IRIS_SECRET_KEY
             valueFrom:
               secretKeyRef:
-                key: {{.Values.irisapp.secrets.secret_key_name}}
+                name: {{.Values.irisapp.secrets.secret_key.name}}
+                key: {{.Values.irisapp.secrets.secret_key.key}}
 
           - name: POSTGRES_ADMIN_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: {{.Values.irisapp.secrets.postgres_admin_password_name}}
+                name: {{.Values.irisapp.secrets.postgres_admin_password.name}}
+                key: {{.Values.irisapp.secrets.postgres_admin_password.key}}
 
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: {{.Values.irisapp.secrets.postgres_password_name}}
+                name: {{.Values.irisapp.secrets.postgres_password.name}}
+                key: {{.Values.irisapp.secrets.postgres_password.key}}
 
           {{else}}
 
