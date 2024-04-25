@@ -89,7 +89,15 @@ irisapp:
    ##
    service:
      port: 8000
-    
+
+   secrets:
+    enabled: false
+    postgres_password_name: ''
+    postgres_admin_password_name: ''
+    secret_key_name: ''
+    password_salt_name: ''
+    iris_admin_password: ''
+
    ## @param irisapp.type Iris Frontend Service type
    ##
    type: NodePort
@@ -107,6 +115,8 @@ irisapp:
    IRIS_SECRET_KEY: AVerySuperSecretKey-SoNotThisOne
    IRIS_SECURITY_PASSWORD_SALT: ARandomSalt-NotThisOneEither
    IRIS_ADM_USERNAME: administrator
+   IRIS_SERVE_SECURE: 1
+
    # Must be 12 characters minimum and contains a capital letter and a number. 
    IRIS_ADM_PASSWORD: Hello12345!
    DB_RETRY_COUNT: 5
